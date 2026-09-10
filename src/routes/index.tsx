@@ -47,7 +47,8 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATS_NUMBER = "5573999989200";
-const WHATS = `https://wa.me/${WHATS_NUMBER}`;
+const WHATS_TEXT = "Olá! Vim pelo site e quero fazer uma reserva.";
+const WHATS = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(WHATS_TEXT)}`;
 const MAPS =
   "https://www.google.com/maps/search/?api=1&query=R+Cidade+de+Faffi%2C+135%2C+Sala+003%2C+Centro%2C+Porto+Seguro+-+BA%2C+45810-000";
 const INSTAGRAM = "https://www.instagram.com/novacar.locadora/";
@@ -196,7 +197,7 @@ function Index() {
                 </ul>
                 <button
                   type="button"
-                  onClick={() => setCarroReserva(c.nome)}
+                  onClick={() => setCarroReserva(c.tag)}
                   className="mt-5 rounded-full bg-ink py-2.5 text-center text-sm font-semibold text-ink-foreground transition hover:bg-primary hover:text-primary-foreground"
                 >
                   Consultar diária

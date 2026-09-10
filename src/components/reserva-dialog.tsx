@@ -13,10 +13,16 @@ import { Button } from "@/components/ui/button";
 import { createLead } from "@/lib/leads.server";
 
 type ReservaDialogProps = {
-  carro: string | null;
+  carro: string | null; // categoria do carro, ex: "SUV", "7 lugares"
   onOpenChange: (open: boolean) => void;
   whatsNumber: string; // dígitos do WhatsApp, ex: "5573999989200"
 };
+
+// Monta a frase da mensagem de forma natural: "um SUV", "um carro 7 lugares"...
+function fraseCategoria(categoria: string) {
+  if (categoria.toLowerCase().includes("lugares")) return `um carro ${categoria}`;
+  return `um ${categoria}`;
+}
 
 export function ReservaDialog({ carro, onOpenChange, whatsNumber }: ReservaDialogProps) {
   const [nome, setNome] = useState("");
@@ -48,7 +54,8 @@ export function ReservaDialog({ carro, onOpenChange, whatsNumber }: ReservaDialo
     }
 
     const linhas = [
-      `Olá! Quero reservar o ${carro}.`,
+      `Olá! Quero reservar ${fraseCategoria(carro)}.`,
+      "Vim pelo site.",
       `Nome: ${nome}`,
       `Telefone: ${telefone}`,
       dataInicio || dataFim ? `Datas: ${dataInicio || "?"} a ${dataFim || "?"}` : null,
