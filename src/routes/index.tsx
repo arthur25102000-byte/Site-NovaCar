@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATS = "https://wa.me/5573988000000"; // TODO: confirmar número real de WhatsApp
+const WHATS = "https://wa.me/5573999989200";
 const MAPS =
   "https://www.google.com/maps/search/?api=1&query=R+Cidade+de+Faffi%2C+135%2C+Sala+003%2C+Centro%2C+Porto+Seguro+-+BA%2C+45810-000";
 const INSTAGRAM = "https://www.instagram.com/novacar.locadora/";
