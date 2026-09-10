@@ -15,6 +15,9 @@ import {
   Check,
 } from "lucide-react";
 
+import { useState } from "react";
+
+import { ReservaDialog } from "@/components/reserva-dialog";
 import hero from "@/assets/hero.jpg";
 import carSpin from "@/assets/car-spin.jpg";
 import carSuv from "@/assets/car-suv.jpg";
@@ -43,7 +46,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATS = "https://wa.me/5573999989200";
+const WHATS_NUMBER = "5573999989200";
+const WHATS = `https://wa.me/${WHATS_NUMBER}`;
 const MAPS =
   "https://www.google.com/maps/search/?api=1&query=R+Cidade+de+Faffi%2C+135%2C+Sala+003%2C+Centro%2C+Porto+Seguro+-+BA%2C+45810-000";
 const INSTAGRAM = "https://www.instagram.com/novacar.locadora/";
@@ -73,8 +77,15 @@ const vantagens = [
 ];
 
 function Index() {
+  const [carroReserva, setCarroReserva] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <ReservaDialog
+        carro={carroReserva}
+        onOpenChange={(open) => !open && setCarroReserva(null)}
+        whatsNumber={WHATS_NUMBER}
+      />
       <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <a href="#top" className="leading-none">
@@ -183,12 +194,13 @@ function Index() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={WHATS}
+                <button
+                  type="button"
+                  onClick={() => setCarroReserva(c.nome)}
                   className="mt-5 rounded-full bg-ink py-2.5 text-center text-sm font-semibold text-ink-foreground transition hover:bg-primary hover:text-primary-foreground"
                 >
                   Consultar diária
-                </a>
+                </button>
               </div>
             </article>
           ))}
